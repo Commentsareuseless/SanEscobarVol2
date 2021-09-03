@@ -143,6 +143,7 @@
     <ClCompile Include="TxtParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Matrix.hpp" />
     <ClInclude Include="TxtParser.hpp" />
   </ItemGroup>
   <ItemGroup>

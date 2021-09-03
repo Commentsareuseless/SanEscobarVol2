@@ -1,7 +1,7 @@
 #include "TxtParser.hpp"
 
 
-void TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
+int TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 {
 	std::ifstream file2Parse(file);
 	std::string fileBuffer;
@@ -18,7 +18,7 @@ void TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 	if (!file2Parse)
 	{
 		printf("Plik z macierza nie istnieje :(\n");
-		return;
+		return -1;
 	}
 	fileBuffer.reserve(100); // wild guess :)
 
@@ -42,7 +42,7 @@ void TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 				if (!(matrixSize == numOfTokens - 1) || !matrixFound)
 				{
 					printf("Error! invalid matrix\n");
-					return;
+					return -1;
 				}
 				eomFound = true;
 				break;
@@ -55,6 +55,7 @@ void TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 				}
 				catch (std::invalid_argument& arg)
 				{
+					(void)arg;
 					continue;
 				}
 
@@ -69,7 +70,7 @@ void TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 		printf("%d ", num);
 	}
 	printf("\n");
-
+	return matrixSize;
 }
 
 bool TxtParser::ReadNextLine(std::ifstream& file, std::string& out_readLine)
@@ -87,10 +88,6 @@ bool TxtParser::IsComment(std::string& line)
 	if (line[0] == '#') { return true; }
 
 	return false;
-}
-
-TxtParser::Tokenizer::Tokenizer()
-{
 }
 
 void TxtParser::Tokenizer::Tokenize(const std::string& str, char delim)

@@ -11,7 +11,8 @@ using TokenVec = std::vector<std::string>;
 class TxtParser
 {
 public:
-	static void MakeMatrix(NeighMatrix& out_matrix, const FileName& file);
+	[[nodiscard]]
+	static int MakeMatrix(NeighMatrix& out_matrix, const FileName& file);
 
 private:
 
@@ -21,7 +22,7 @@ private:
 	class Tokenizer
 	{
 	public:
-		Tokenizer();
+		Tokenizer() = default;
 		void Tokenize(const std::string& str, char delim);
 		std::string NextToken();
 		int GetNumOfTokens() {
