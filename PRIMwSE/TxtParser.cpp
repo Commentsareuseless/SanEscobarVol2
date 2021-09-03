@@ -30,7 +30,7 @@ void TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 		numOfTokens = tokenizer.GetNumOfTokens();
 		do{
 			currentToken = tokenizer.NextToken();
-			printf("%s ", currentToken.c_str());
+			// printf("%s ", currentToken.c_str()); // debug
 			if (currentToken[0] == '[')
 			{
 				matrixFound = true;
@@ -61,15 +61,15 @@ void TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 				out_matrix.push_back(matrixElem);
 			}
 		} while (!currentToken.empty());
-		printf("\n");
+		// printf("\n"); // debug
 	}
-	
 	printf("Output vector: \n");
 	for (auto num : out_matrix)
 	{
 		printf("%d ", num);
 	}
 	printf("\n");
+
 }
 
 bool TxtParser::ReadNextLine(std::ifstream& file, std::string& out_readLine)
