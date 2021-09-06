@@ -11,6 +11,11 @@ int main()
 
 	matrixSize = TxtParser::MakeMatrix(matrix, "graph.txt");
 
+	if (matrixSize < 0)
+	{
+		printf("Nalezy poprawic macierz w pliku txt\n");
+		return 1;
+	}
 	graph.SetMatrix(std::move(matrix), matrixSize);
 
 	printf("Get element on 2 1 = %d\n", graph.GetVal(2,1));

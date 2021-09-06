@@ -30,18 +30,21 @@ int TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 		numOfTokens = tokenizer.GetNumOfTokens();
 		do{
 			currentToken = tokenizer.NextToken();
-			 printf("%s ", currentToken.c_str()); // debug
+			// printf("%s ", currentToken.c_str()); // debug
 			if (currentToken[0] == '[')
 			{
 				matrixFound = true;
 				matrixSize = numOfTokens - 1;
+				//printf("numOfTokens: %d\n", matrixSize);
 				continue;
 			}
+
 			if (currentToken[0] == ']')
 			{
-				if (!(matrixSize == numOfTokens - 1) || !matrixFound)
+				if (!matrixFound || !(matrixSize == numOfTokens - 1))
 				{
 					printf("Error! invalid matrix\n");
+					printf("Brakuje nawiasu zamykajacego, lub liczba elementow w wierszu jest nieodpowiednia\n");
 					return -1;
 				}
 				eomFound = true;
@@ -62,14 +65,14 @@ int TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 				out_matrix.push_back(matrixElem);
 			}
 		} while (!currentToken.empty());
-		 printf("\n"); // debug
+		// printf("\n"); // debug
 	}
 	printf("Output vector: \n");
 	for (auto num : out_matrix)
 	{
 		printf("%d ", num);
 	}
-	printf("\n");
+	 printf("\n");
 	return matrixSize;
 }
 
@@ -86,6 +89,7 @@ bool TxtParser::ReadNextLine(std::ifstream& file, std::string& out_readLine)
 bool TxtParser::IsComment(std::string& line)
 {
 	if (line[0] == '#') { return true; }
+	if (line.empty()) { return true; } // Skip blank lines
 
 	return false;
 }
