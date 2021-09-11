@@ -58,7 +58,7 @@ int TxtParser::MakeMatrix(NeighMatrix& out_matrix, const FileName& file)
 				}
 				catch (std::invalid_argument& arg)
 				{
-					(void)arg;	// Skip NaN 
+					(void)arg;	// Skip NaN
 					continue;
 				}
 

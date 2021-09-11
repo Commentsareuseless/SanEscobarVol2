@@ -140,14 +140,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="PathCalculator.cpp" />
     <ClCompile Include="TxtParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Matrix.hpp" />
+    <ClInclude Include="PathCalculator.hpp" />
+    <ClInclude Include="Graph.hpp" />
     <ClInclude Include="TxtParser.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Debug\graph.txt" />
+    <Text Include="graph.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

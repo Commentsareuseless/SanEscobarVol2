@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <limits>
 
 using NeighMatrix = std::vector<int>;
 using FileName = std::string;
