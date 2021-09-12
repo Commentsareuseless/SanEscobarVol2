@@ -22,7 +22,7 @@ bool Graph::SetMatrix(std::vector<int>&& matrix, int width)
 	if(CheckGraph())
 		return true;
 
-	printf("Invalid matrix! (square matrix must be provided)\n");
+	printf("Invalid matrix! (symethrical square matrix must be provided)\n");
 	return false;
 }
 
