@@ -32,6 +32,7 @@ public:
 	Edges GetAllEdges();
 
 private:
+	bool CheckGraph();
 	int _rootIdx{ 0 };
 	int _rowWidth{ 0 };
 	std::vector<int> _matrix;

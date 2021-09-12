@@ -17,8 +17,11 @@ bool Graph::SetMatrix(std::vector<int>&& matrix, int width)
 	{
 		_matrix = matrix;
 		_rowWidth = width;
-		return true;
 	}
+	// Check if matrix is symethrical 
+	if(CheckGraph())
+		return true;
+
 	printf("Invalid matrix! (square matrix must be provided)\n");
 	return false;
 }
@@ -74,4 +77,23 @@ Edges Graph::GetAllEdges()
 	}
 
 	return edg;
+}
+
+bool Graph::CheckGraph() 
+{
+	for (int x = 0; x < _rowWidth; x++)
+	{
+		for (int y = 0; y < _rowWidth; y++)
+		{
+			if (_matrix[x + _rowWidth * y] != _matrix[y + _rowWidth * x])
+				return false;
+		}
+	}
+
+	for (int x = 0; x < _rowWidth; x++)
+	{
+		if (_matrix[x + _rowWidth * x] != 0)
+			return false;
+	}
+	return true;
 }
