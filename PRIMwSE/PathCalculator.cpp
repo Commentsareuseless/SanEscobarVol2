@@ -2,7 +2,7 @@
 
 #include <limits>
 
-void PathCalculator::CalcShortestPaths(const Graph& graph, std::vector<int>& out_dist)
+bool PathCalculator::CalcShortestPaths(const Graph& graph, std::vector<int>& out_dist)
 {
     std::vector<bool> isProcessed{};
     int graphRow = graph.GetSize();
@@ -26,18 +26,24 @@ void PathCalculator::CalcShortestPaths(const Graph& graph, std::vector<int>& out
     for (int count = 0; count < graphRow - 1; count++) 
     {
         int candidate = GetMinDistance(out_dist, isProcessed);
+        if (candidate == -1)
+        {
+            out_dist.clear(); // Make sure this is invalid
+            return false;
+        }
         isProcessed[candidate] = true;
 
         for (int node{ 0 }; node < graphRow; ++node)
         {
-            if (!isProcessed[node] && graph.GetVal(candidate, node) && out_dist[candidate] != INT_MAX
-                && out_dist[candidate] + graph.GetVal(candidate, node) < out_dist[node])
+            if (!isProcessed.at(node) && graph.GetVal(candidate, node) && out_dist.at(candidate) != INT_MAX
+                && out_dist.at(candidate) + graph.GetVal(candidate, node) < out_dist.at(node))
             {
-                out_dist[node] = out_dist[candidate] + graph.GetVal(candidate,node);
+                out_dist.at(node) = out_dist.at(candidate) + graph.GetVal(candidate,node);
             }
         }
     }
-
+   
+    return true;
 }
 
 int PathCalculator::GetMinDistance(std::vector<int>& dist_array, std::vector<bool>& isProcessed)

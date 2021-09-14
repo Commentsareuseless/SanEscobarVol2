@@ -8,7 +8,7 @@ class PathCalculator
 {
 public:
 	// Every index in instances  is num of part. node, value is distance from source node
-	static void CalcShortestPaths(
+	static bool CalcShortestPaths(
 		const Graph& graph, 
 		std::vector<int>& out_distances);
 

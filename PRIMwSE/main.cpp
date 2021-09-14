@@ -59,7 +59,14 @@ int main()
 	for (auto& edge : graphEdges)
 	{
 		graph.RmEdge(edge.x, edge.y);
-		PathCalculator::CalcShortestPaths(graph, nthShortestPaths);
+
+		if (!PathCalculator::CalcShortestPaths(graph, nthShortestPaths))
+		{
+			printf("[NOTE] Usuniecie krawedzi %d<->%d spowoduje ze graf stanie sie niespojny\n",
+				edge.x, edge.y);
+			graph.AddEdge(edge.x, edge.y, edge.cost);
+			continue;
+		}
 
 		if (nthShortestPaths == initialShortestPaths)
 		{
