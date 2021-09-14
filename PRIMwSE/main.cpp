@@ -69,10 +69,17 @@ int main()
 		graph.AddEdge(edge.x, edge.y, edge.cost);
 	}
 
+	if (resultEdges.empty())
+	{
+		printf("Nie znaleziono zadnych kandydatow na lotnisko :( \n");
+		pause();
+		return 1;
+	}
+
 	printf("Kandydaci na lotnisko: \n");
 	for (auto& edge : resultEdges)
 	{
-		printf("Autostrada pomiêdzy %d<->%d \n", edge.x, edge.y);
+		printf("Autostrada pomiedzy %d<->%d \n", edge.x, edge.y);
 	}
 	// Pause execution
 	pause();
