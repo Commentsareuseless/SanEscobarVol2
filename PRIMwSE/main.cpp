@@ -62,8 +62,6 @@ int main()
 
 		if (!PathCalculator::CalcShortestPaths(graph, nthShortestPaths))
 		{
-			printf("[NOTE] Usuniecie krawedzi %d<->%d spowoduje ze graf stanie sie niespojny\n",
-				edge.x, edge.y);
 			graph.AddEdge(edge.x, edge.y, edge.cost);
 			continue;
 		}
